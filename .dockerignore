@@ -1,0 +1,13 @@
+.git
+.gitignore
+.github
+node_modules
+__pycache__
+*.pyc
+.DS_Store
+.vscode
+.idea
+README.md
+LICENSE
+.env
+.env.local

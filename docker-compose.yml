@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  windows-vm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: windows-virtual-env
+    hostname: windows-container
+    ports:
+      - "3389:3389"    # RDP
+      - "5985:5985"    # WinRM
+      - "80:80"        # HTTP
+      - "443:443"      # HTTPS
+    environment:
+      - ACCEPT_EULA=Y
+      - COMPUTERNAME=windows-container
+    volumes:
+      - ./data:/app/data
+      - ./scripts:/app/scripts
+    networks:
+      - windows-network
+    restart: unless-stopped
+
+networks:
+  windows-network:
+    driver: bridge
